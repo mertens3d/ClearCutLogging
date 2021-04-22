@@ -1,0 +1,26 @@
+{
+  "FriendlyName": "Learn EXM",
+  "Targets": [
+    {
+      "ChildDirectory": "LearnEXMsc.dev.local\\App_Data\\logs",
+      "FileFilter": "log.*.txt",
+      "FriendlyName": "Sitecore Log"
+    },
+    {
+      "ChildDirectory": "LearnEXMxconnect.dev.local\\App_Data\\logs",
+      "FileFilter": "xconnect-log-*.txt",
+      "FriendlyName": "xConnect Log"
+    },
+    {
+      "ChildDirectory": "LearnEXMxconnect.dev.local\\App_Data\\jobs\\continuous\\AutomationEngine\\App_Data\\logs",
+      "FileFilter": "xconnect-log-*.txt",
+      "FriendlyName": "Automation Engine"
+    },
+    {
+      "ChildDirectory": "LearnEXMxconnect.dev.local\\App_Data\\jobs\\continuous\\IndexWorker\\App_Data\\logs",
+      "FileFilter": "xconnect-log-*.txt",
+      "FriendlyName": "Index Worker"
+    }
+  ],
+  "RootFolder": "C:\\inetpub\\wwwroot"
+}
