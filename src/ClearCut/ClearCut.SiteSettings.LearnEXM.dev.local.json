@@ -20,6 +20,16 @@
       "ChildDirectory": "LearnEXMxconnect.dev.local\\App_Data\\jobs\\continuous\\IndexWorker\\App_Data\\logs",
       "FileFilter": "xconnect-log-*.txt",
       "FriendlyName": "Index Worker"
+    },
+    {
+      "ChildDirectory": "LearnEXMsc.dev.local\\App_Data\\logs",
+      "FileFilter": "Exm.log*.txt",
+      "FriendlyName": "EXM Log"
+    },
+    {
+      "ChildDirectory": "LearnEXMxconnect.dev.local\\App_Data\\jobs\\continuous\\ProcessingEngine\\App_Data\\logs",
+      "FileFilter": "xconnect-log-*.txt",
+      "FriendlyName": "Processing Engine"
     }
   ],
   "RootFolder": "C:\\inetpub\\wwwroot"

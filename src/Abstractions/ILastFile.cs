@@ -8,5 +8,7 @@ namespace ClearCut.Support.Abstractions
     public string FriendlyName { get; set; }
     public Guid TargetId { get; set; }
     FileInfo FileInfo { get; }
+    string Age { get; }
+    TimeSpan TimeSpan { get; }
   }
 }

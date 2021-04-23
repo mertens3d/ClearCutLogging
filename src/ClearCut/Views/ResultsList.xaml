@@ -6,31 +6,46 @@
              xmlns:myApp="clr-namespace:ClearCut.Main.ViewModels"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance myApp:ResultsViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="120" d:DesignWidth="800">
   <Grid>
-    <StackPanel>
-      <Label Content="Results List" HorizontalAlignment="Left" VerticalAlignment="Top" />
-      <ListView x:Name="idListView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid.Resources>
+      <AlternationConverter x:Key="BackgroundConverter">
+        <SolidColorBrush Color="#FFE3EDF0" />
+        <SolidColorBrush>#FFF0F0E3</SolidColorBrush>
+      </AlternationConverter>
 
-        <ListView.ItemContainerStyle>
-          <Style TargetType="ListViewItem">
-            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
-          </Style>
-        </ListView.ItemContainerStyle>
+      <Style x:Key="alternatingWithBinding" TargetType="ListViewItem"  >
+        <Setter Property="Background"
+                Value="{Binding RelativeSource={RelativeSource Self},
+                Path=(ItemsControl.AlternationIndex),
+                Converter={StaticResource BackgroundConverter}}" />
+        <!--<EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />-->
+
+      </Style>
+
+    </Grid.Resources>
+    <StackPanel>
+      <ListView x:Name="idListView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemContainerStyle="{StaticResource alternatingWithBinding}" 
+                AlternationCount="2"
+                ScrollViewer.VerticalScrollBarVisibility="Visible"
+                ScrollViewer.CanContentScroll="False"
+                
+                >
         <ListView.ItemTemplate>
           <DataTemplate>
+            <TextBlock Tag="{Binding Path=FileInfo.FullName}"   PreviewMouseLeftButtonDown="ListViewItem_PreviewMouseLeftButtonDown" >
+              
+              
             <StackPanel Orientation="Horizontal">
-              <TextBlock Text="{Binding Path=FriendlyName}" />
-              <TextBlock Text=" - " />
-              <TextBlock Text="{Binding Path=FileInfo.LastWriteTime}" />
-              <TextBlock Text=" - " />
-              <TextBlock >
-                <Hyperlink Tag="{Binding Path=FileInfo.FullName}" 
-                           Click="Hyperlink_Click">
-                  <TextBlock Text="{Binding Path=FileInfo.Name}" />
-                </Hyperlink>
-              </TextBlock>
+              <TextBlock Text="{Binding Path=FriendlyName}" Width="120" />
+              <TextBlock Text=" " />
+              <TextBlock Text="{Binding Path=Age}" Width="50" TextAlignment="Left" />
+              <TextBlock Text=" " />
+              <TextBlock Text="{Binding Path=FileInfo.LastWriteTime}" Width="130" TextAlignment="Right" />
+              <TextBlock Width="20" />
+                               <TextBlock Text="{Binding Path=FileInfo.Name}" />
             </StackPanel>
+            </TextBlock>
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>

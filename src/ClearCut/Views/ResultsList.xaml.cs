@@ -25,12 +25,7 @@ namespace ClearCut.Main.Views
 
     private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-
-    }
-
-    private void Hyperlink_Click(object sender, RoutedEventArgs e)
-    {
-      string tagValue = ((Hyperlink)sender).Tag.ToString();
+      string tagValue = ((TextBlock)sender).Tag.ToString();
       if (!string.IsNullOrEmpty(tagValue))
       {
 
@@ -39,6 +34,12 @@ namespace ClearCut.Main.Views
         var program = @"C:\Program Files\Notepad++\notepad++.exe";
         System.Diagnostics.Process.Start(program, args);
       }
+
+    }
+
+    private void Hyperlink_Click(object sender, RoutedEventArgs e)
+    {
+      
     }
   }
 }

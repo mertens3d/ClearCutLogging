@@ -64,8 +64,11 @@ namespace ClearCut.Support.Witness
 
         foundWitness.LastFile = e.LastFile;
 
-        witnessEventArgs.LastFiles = new List<ILastFile>();
-        TargetWatchers.ForEach(x => witnessEventArgs.LastFiles.Add(x.LastFile));
+        var lastFiles = new List<ILastFile>();
+        TargetWatchers.ForEach(x => lastFiles.Add(x.LastFile));
+
+        witnessEventArgs.LastFiles = lastFiles.OrderBy(x => x.TimeSpan).ToList();
+
 
         EventHandler<WitnessEventArgs> handler = DataChanged;
         handler?.Invoke(this, witnessEventArgs);
