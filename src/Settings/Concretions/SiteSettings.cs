@@ -16,8 +16,9 @@ namespace ClearCut.Support.Settings.Concretions
     {
       Targets = targets.Cast<ITargetOptions>().ToList();
     }
+
     public string FriendlyName { get; set; }
-    public List<ITargetOptions> Targets { get; set; }
     public string RootFolder { get; set; }
+    public List<ITargetOptions> Targets { get; set; }
   }
 }

@@ -19,23 +19,17 @@
                 Value="{Binding RelativeSource={RelativeSource Self},
                 Path=(ItemsControl.AlternationIndex),
                 Converter={StaticResource BackgroundConverter}}" />
-        <!--<EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />-->
-
       </Style>
-
     </Grid.Resources>
     <StackPanel>
       <ListView x:Name="idListView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemContainerStyle="{StaticResource alternatingWithBinding}" 
                 AlternationCount="2"
                 ScrollViewer.VerticalScrollBarVisibility="Visible"
                 ScrollViewer.CanContentScroll="False"
-                
                 >
         <ListView.ItemTemplate>
           <DataTemplate>
-            <TextBlock Tag="{Binding Path=FileInfo.FullName}"   PreviewMouseLeftButtonDown="ListViewItem_PreviewMouseLeftButtonDown" >
-              
-              
+            <TextBlock Tag="{Binding Path=FileInfo.FullName}" PreviewMouseLeftButtonDown="ListViewItem_PreviewMouseLeftButtonDown" >
             <StackPanel Orientation="Horizontal">
               <TextBlock Text="{Binding Path=FriendlyName}" Width="120" />
               <TextBlock Text=" " />
@@ -43,7 +37,7 @@
               <TextBlock Text=" " />
               <TextBlock Text="{Binding Path=FileInfo.LastWriteTime}" Width="130" TextAlignment="Right" />
               <TextBlock Width="20" />
-                               <TextBlock Text="{Binding Path=FileInfo.Name}" />
+              <TextBlock Text="{Binding Path=FileInfo.Name}" />
             </StackPanel>
             </TextBlock>
           </DataTemplate>

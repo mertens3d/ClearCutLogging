@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System.Windows;
+using ClearCut.Main;
+
 
 namespace ClearCut
 {
@@ -13,11 +15,10 @@ namespace ClearCut
     public App()
     {
       var services = new ServiceCollection();
-
       ILogger log = new LoggerConfiguration()
         .Enrich.FromLogContext()
         .WriteTo.File(
-                  path: "logs/ClearCut..log",
+            path: Constants.Logging.Path,
             restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information,
             rollingInterval: RollingInterval.Day,
             rollOnFileSizeLimit: true)
@@ -26,7 +27,6 @@ namespace ClearCut
       var ioc = new WindsorContainer();
 
       ioc.Register(Castle.MicroKernel.Registration.Component.For<ILogger>().Instance(log));
-
       ioc.Register(Castle.MicroKernel.Registration.Component.For<MainWindow>().ImplementedBy<MainWindow>());
 
       var window = ioc.Resolve<MainWindow>();

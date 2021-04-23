@@ -12,15 +12,13 @@ namespace ClearCut.Support.Witness
   {
     private ITargetOptions target;
 
-    private ILogger Logger { get; }
-
     public TargetWatcher(string rootFolder, ITargetOptions target, ILogger logger)
     {
       this.target = target;
       this.Logger = logger;
       this.RootFolder = rootFolder;
       WatcherId = Guid.NewGuid();
-      InitFileSystemWatcher(); 
+      InitFileSystemWatcher();
       PopulateLastFile();
     }
 
@@ -28,6 +26,7 @@ namespace ClearCut.Support.Witness
 
     public ILastFile LastFile { get; internal set; }
     public Guid WatcherId { get; internal set; }
+    private ILogger Logger { get; }
     private string RootFolder { get; }
 
     internal void TriggerDataChange()
@@ -42,6 +41,47 @@ namespace ClearCut.Support.Witness
       OnDataChanged(targetEventWatcher);
     }
 
+    private string CalculateAge(TimeSpan diff)
+    {
+      string toReturn = string.Empty;
+
+      if ((int)diff.TotalDays > 1)
+      {
+        toReturn = (int)diff.TotalDays + " days";
+      }
+      else if ((int)diff.TotalHours > 1)
+      {
+        toReturn = (int)diff.TotalHours + " hrs";
+      }
+      else if ((int)diff.TotalMinutes > 1)
+      {
+        toReturn = (int)diff.TotalMinutes + " mins";
+      }
+      else
+      {
+        toReturn = (int)diff.TotalSeconds + " secs";
+      }
+
+      return toReturn;
+    }
+
+    private TimeSpan CalculateTimeSpan(FileInfo lastFileInfo)
+    {
+      TimeSpan toReturn = TimeSpan.MaxValue;
+      if (lastFileInfo != null && lastFileInfo.Exists)
+      {
+        var fileDate = lastFileInfo.LastWriteTime;
+        var nowDate = DateTime.Now;
+        toReturn = nowDate - fileDate;
+      }
+      else
+      {
+        Logger.Error("LastFileInfo is not valid");
+      }
+
+      return toReturn;
+    }
+
     private void CallBackDataChanged(object sender, FileSystemEventArgs e)
     {
       TriggerDataChange();
@@ -54,9 +94,6 @@ namespace ClearCut.Support.Witness
       var dirInfo = new DirectoryInfo(Path.Combine(RootFolder, target.ChildDirectory));
       if (dirInfo != null && dirInfo.Exists)
       {
-
-
-        //dirInfo.GetFiles(target.FileFilter).ToList().ForEach(x => x.Refresh());
 
         var lastFileInfo = dirInfo.GetFiles(target.FileFilter)
           .OrderByDescending(x => x.LastWriteTime)
@@ -91,48 +128,6 @@ namespace ClearCut.Support.Witness
 
       return toReturn;
     }
-
-    private TimeSpan CalculateTimeSpan(FileInfo lastFileInfo)
-    {
-      TimeSpan toReturn = TimeSpan.MaxValue;
-      if (lastFileInfo != null && lastFileInfo.Exists)
-      {
-        var fileDate = lastFileInfo.LastWriteTime;
-        var nowDate = DateTime.Now;
-        toReturn = nowDate - fileDate;
-      }
-      else
-      {
-        Logger.Error("LastFileInfo is not valid");
-      }
-
-      return toReturn;
-    }
-
-    private string CalculateAge(TimeSpan diff)
-    {
-      string toReturn = string.Empty;
-
-      if ((int)diff.TotalDays > 1)
-      {
-        toReturn = (int)diff.TotalDays + " days";
-      }
-      else if ((int)diff.TotalHours > 1)
-      {
-        toReturn = (int)diff.TotalHours + " hrs";
-      }
-      else if ((int)diff.TotalMinutes > 1)
-      {
-        toReturn = (int)diff.TotalMinutes + " mins";
-      }
-      else
-      {
-        toReturn = (int)diff.TotalSeconds + " secs";
-      }
-
-      return toReturn;
-    }
-
     private void InitFileSystemWatcher()
     {
       var candidateDirectory = new DirectoryInfo(Path.Combine(RootFolder, target.ChildDirectory));

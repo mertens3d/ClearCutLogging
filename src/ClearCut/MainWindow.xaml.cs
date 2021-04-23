@@ -18,30 +18,25 @@ namespace ClearCut
   ///
   public partial class MainWindow : Window
   {
-    //private static ILog Logger => LogManager.GetLogger(typeof(MainWindow));
+    private TimeSpan _time;
+
+    private DispatcherTimer _timer;
 
     public MainWindow(ILogger logger)
     {
-      //ILoggerRepository repository = log4net.LogManager.GetRepository(Assembly.GetCallingAssembly());
-      //var fileInfo = new FileInfo(@"log4net.config");
-      //log4net.Config.XmlConfigurator.Configure(repository, fileInfo);
       Logger = logger;
-
-      //BasicConfigurator.Configure();
 
       InitializeComponent();
 
-      var settingsManager = new SettingsManager();
+      SettingsManager = new SettingsManager();
       InitWitness();
       InitCountdown();
     }
 
-    public ResultsViewModel ResultsViewModel { get; private set; }
     private ILogger Logger { get; }
+    private ResultsViewModel ResultsViewModel { get; set; }
+    private SettingsManager SettingsManager { get; }
     private WitnessManager WitnessManager { get; set; }
-
-    private DispatcherTimer _timer;
-    private TimeSpan _time;
 
     private void InitCountdown()
     {
@@ -49,12 +44,11 @@ namespace ClearCut
 
       _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.SystemIdle, delegate
         {
-          this.Title = "Clear Cut Log Watcher : " + _time.Seconds;
+          this.Title = Constants.Ui.TitlePrefix + _time.Seconds;
           if (_time == TimeSpan.Zero)
           {
             WitnessManager.TriggerDataChanged();
             _time = TimeSpan.FromSeconds(10);
-            //_timer.Stop();
           }
           _time = _time.Add(TimeSpan.FromSeconds(-1));
         }, Application.Current.Dispatcher);
@@ -65,8 +59,7 @@ namespace ClearCut
     private void InitWitness()
     {
       ResultsViewModel = new ResultsViewModel();
-      var settingsManager = new SettingsManager();
-       WitnessManager = new WitnessManager(settingsManager.GetEnvironmentSettings(), Logger);
+      WitnessManager = new WitnessManager(SettingsManager.GetEnvironmentSettings(), Logger);
       WitnessManager.DataChanged += UpdateDataContext;
       WitnessManager.TriggerDataChanged();
     }
@@ -77,7 +70,6 @@ namespace ClearCut
       this.Dispatcher.Invoke(() =>
       {
         ResultsList.idListView.ItemsSource = ResultsViewModel.LastFiles;
-        //DataContext = ResultsViewModel;
       });
     }
 

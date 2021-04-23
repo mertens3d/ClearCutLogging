@@ -70,7 +70,7 @@ namespace ClearCut.Support.Settings
     {
       SiteSettings toReturn = null;
 
-      if (settingFile != null)
+      if (settingFile != null && settingFile.Exists)
       {
         using (StreamReader file = File.OpenText(settingFile.FullName))
         {
@@ -79,13 +79,9 @@ namespace ClearCut.Support.Settings
           serializer.NullValueHandling = NullValueHandling.Ignore;
           SiteSettings result = (SiteSettings)serializer.Deserialize(file, typeof(SiteSettings));
 
-          //JsonConvert.DeserializeObject<Account>(json);
-
-          //  JObject result = (JObject)JToken.ReadFrom(reader);
-
           if (result != null)
           {
-            toReturn = result;// result.ToObject<SiteSettings>();
+            toReturn = result;
           }
         }
       }
