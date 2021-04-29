@@ -18,9 +18,12 @@ namespace ClearCut.Main.Views
       string tagValue = ((TextBlock)sender).Tag.ToString();
       if (!string.IsNullOrEmpty(tagValue))
       {
-        var args = @"" + tagValue + "";
-        var program = @"C:\Program Files\Notepad++\notepad++.exe";
-        System.Diagnostics.Process.Start(program, args);
+        var notepadPPArgs = @"" + tagValue + "";
+        var notepadPPProgram = @"C:\Program Files\Notepad++\notepad++.exe";
+        var bareTailArgs = @"" + tagValue + "";
+        var bareTailProgram = @"C:\BareTail\baretail.exe";
+        //System.Diagnostics.Process.Start(notepadPPProgram, notepadPPArgs);
+        System.Diagnostics.Process.Start(bareTailProgram, bareTailArgs);
       }
     }
   }
