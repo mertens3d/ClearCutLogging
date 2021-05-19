@@ -22,6 +22,7 @@
       </Style>
     </Grid.Resources>
     <StackPanel>
+      <Label x:Name="countDown"/>
       <ListView x:Name="idListView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemContainerStyle="{StaticResource alternatingWithBinding}" 
                 AlternationCount="2"
                 ScrollViewer.VerticalScrollBarVisibility="Visible"

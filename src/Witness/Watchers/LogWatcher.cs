@@ -8,11 +8,11 @@ using System.Linq;
 
 namespace ClearCut.Support.Witness
 {
-  public class TargetWatcher
+  public class LogWatcher
   {
     private ITargetOptions target;
 
-    public TargetWatcher(string rootFolder, ITargetOptions target, ILogger logger)
+    public LogWatcher(string rootFolder, ITargetOptions target, ILogger logger)
     {
       this.target = target;
       this.Logger = logger;

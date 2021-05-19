@@ -8,7 +8,14 @@
         Title="Clear Cut Log Watcher" Height="170" Width="800">
   <Grid>
     <StackPanel>
-      <control:ResultsList x:Name="ResultsList" VerticalAlignment="Stretch"></control:ResultsList>
+      
+      <TabControl x:Name="tabDynamic"  ItemsSource="{Binding}">
+        <TabControl.Resources>
+          <DataTemplate x:Key="TabHeader" DataType="TabItem"></DataTemplate>
+          <Style TargetType="control:ResultsList">
+          </Style>
+        </TabControl.Resources>
+      </TabControl>
     </StackPanel>
   </Grid>
 </Window>
