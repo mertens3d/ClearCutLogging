@@ -30,15 +30,20 @@
                 >
         <ListView.ItemTemplate>
           <DataTemplate>
-            <TextBlock Tag="{Binding Path=FileInfo.FullName}" PreviewMouseLeftButtonDown="ListViewItem_PreviewMouseLeftButtonDown" >
+            <TextBlock Tag="{Binding Path=FileInfo.FullName}"  >
             <StackPanel Orientation="Horizontal">
               <TextBlock Text="{Binding Path=FriendlyName}" Width="120" />
               <TextBlock Text=" " />
-              <TextBlock Text="{Binding Path=Age}" Width="50" TextAlignment="Left" />
-              <TextBlock Text=" " />
-              <TextBlock Text="{Binding Path=FileInfo.LastWriteTime}" Width="130" TextAlignment="Right" />
-              <TextBlock Width="20" />
-              <TextBlock Text="{Binding Path=FileInfo.Name}" />
+              <TextBlock Text="{Binding Path=Age}" Width="50" TextAlignment="right" />
+              <TextBlock Text=" " Width="10" />
+              <!--<TextBlock Text="{Binding Path=FileInfo.LastWriteTime}" Width="130" TextAlignment="Right" />
+              <TextBlock Width="20" />-->
+              <TextBlock Text="{Binding Path=FileInfo.Name}" Width="400"/>
+              <Button Click="OnClickNotepadPP" Content="N++" Tag="{Binding Path=FileInfo.FullName}"/>
+              <CheckBox x:Name="cbAutoLoadChangedFileCPP"></CheckBox>
+              <TextBlock Width="4" />
+              <Button Click="OnClickBareTail" Content="BareTail" Tag="{Binding Path=FileInfo.FullName}"/>
+              <CheckBox x:Name="cbAutoLoadChangedFileBareTail"></CheckBox>
             </StackPanel>
             </TextBlock>
           </DataTemplate>

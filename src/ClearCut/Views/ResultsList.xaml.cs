@@ -102,5 +102,28 @@ namespace ClearCut.Main.Views
         System.Diagnostics.Process.Start(bareTailProgram, bareTailArgs);
       }
     }
+
+    private void OnClickNotepadPP(object sender, RoutedEventArgs e)
+    {
+      string tagValue = ((Button)sender).Tag.ToString();
+      if (!string.IsNullOrEmpty(tagValue))
+      {
+        var notepadPPArgs = "\"" + tagValue + "\"";
+        var notepadPPProgram = @"C:\Program Files\Notepad++\notepad++.exe";
+        System.Diagnostics.Process.Start(notepadPPProgram, notepadPPArgs);
+      }
+    }
+
+    private void OnClickBareTail(object sender, RoutedEventArgs e)
+    {
+      string tagValue = ((Button)sender).Tag.ToString();
+      if (!string.IsNullOrEmpty(tagValue))
+      {
+        var bareTailArgs = "\"" + tagValue + "\"";
+        var bareTailProgram = @"C:\BareTail\baretail.exe";
+        System.Diagnostics.Process.Start(bareTailProgram, bareTailArgs);
+      }
+
+    }
   }
 }
