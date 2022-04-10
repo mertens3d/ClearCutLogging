@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="ClearCut.SiteSettings.LearnEXM.dev.local.json">
+    <None Update="ClearCut.SiteSettings.PSP.dev.local.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
