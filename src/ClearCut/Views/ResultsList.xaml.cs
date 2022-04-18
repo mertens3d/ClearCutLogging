@@ -52,6 +52,12 @@ namespace ClearCut.Main.Views
             _buttonsHandler.HandleBareTailClick((Button) sender);
         }
 
+        private void OnClickClearLog(object sender, RoutedEventArgs e)
+        {
+
+            _buttonsHandler.HandleClickClearLog((Button) sender);
+        }
+
         private void OnClickNotepadPP(object sender, RoutedEventArgs e)
         {
             _buttonsHandler.HandleNotepadPPClick((Button) sender);

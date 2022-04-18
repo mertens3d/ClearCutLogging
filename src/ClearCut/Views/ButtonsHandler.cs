@@ -1,4 +1,6 @@
 ﻿using ClearCut.Support.Witness.Watchers;
+using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -8,6 +10,7 @@ namespace ClearCut.Main.Views
     {
         private ResultsList _userControl;
         private SiteWatcher SiteWatcher;
+
         public ButtonsHandler(SiteWatcher siteWatcher, ResultsList resultsListUserControl)
         {
             this.SiteWatcher = siteWatcher;
@@ -31,6 +34,29 @@ namespace ClearCut.Main.Views
             }
         }
 
+        internal void HandleClickClearLog(Button sender)
+        {
+            string logFileNameFull = sender.Tag.ToString();
+            if (!string.IsNullOrEmpty(logFileNameFull))
+            {
+                var targetFile = new FileInfo(logFileNameFull);
+                if (targetFile.Exists)
+                {
+                    try
+                    {
+                    File.WriteAllText(targetFile.FullName, String.Empty);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error clearing. The file may be locked");
+
+                        //it's probably locked
+                    }
+                }
+            }
+        }
+
         internal void HandleBareTailClick(Button sender)
         {
             string tagValue = sender.Tag.ToString();
@@ -47,7 +73,7 @@ namespace ClearCut.Main.Views
             string tagValue = sender.Tag.ToString();
             if (!string.IsNullOrEmpty(tagValue))
             {
-                var notepadPPArgs = "-n999999 \"" + tagValue + "\""  ;
+                var notepadPPArgs = "-n999999 \"" + tagValue + "\"";
                 var notepadPPProgram = @"C:\Program Files\Notepad++\notepad++.exe";
                 System.Diagnostics.Process.Start(notepadPPProgram, notepadPPArgs);
             }
