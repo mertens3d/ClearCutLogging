@@ -20,7 +20,12 @@
     {
       "ChildDirectory": "CommerceAuthoring_Sc9\\wwwroot\\logs",
       "FileFilter": "PayGate.EngineTier.log.*.txt",
-      "FriendlyName": "PayGate Engine Tier"
+      "FriendlyName": "PayGate Authoring"
+    },
+    {
+      "ChildDirectory": "CommerceMinions_Sc9\\wwwroot\\logs",
+      "FileFilter": "PayGate.EngineTier.log.*.txt",
+      "FriendlyName": "PayGate Minions"
     },
     {
       "ChildDirectory": "pspdev.local\\App_Data\\logs",
