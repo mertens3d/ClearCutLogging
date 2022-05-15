@@ -47,6 +47,18 @@ namespace ClearCut.Main.Views
             }
         }
 
+        //private void OnCbAutoLoadCPPChecked(object sender, RoutedEventArgs e)
+        //{
+        //    //MessageBox.Show("clicked");
+        //    _buttonsHandler.HandleNotepadPPAutoLoadClick((CheckBox) sender, true);
+        //}
+
+        //private void OnCbAutoLoadCPPUnChecked(object sender, RoutedEventArgs e)
+        //{
+        //    //MessageBox.Show("clicked");
+        //    _buttonsHandler.HandleNotepadPPAutoLoadClick((CheckBox) sender, false);
+        //}
+
         private void OnClickBareTail(object sender, RoutedEventArgs e)
         {
             _buttonsHandler.HandleBareTailClick((Button) sender);
@@ -69,7 +81,7 @@ namespace ClearCut.Main.Views
             _buttonsHandler.SetButtonColor();
         }
 
-        private void SetDataContext(List<ILastFile> lastFiles)
+        private void SetDataContext(List<IOneLogDataContext> lastFiles)
         {
             ResultsViewModel.LastFiles = lastFiles;
             this.Dispatcher.Invoke(() =>

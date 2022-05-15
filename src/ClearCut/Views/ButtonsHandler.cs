@@ -1,4 +1,5 @@
-﻿using ClearCut.Support.Witness.Watchers;
+﻿using ClearCut.Main.Helpers;
+using ClearCut.Support.Witness.Watchers;
 using System;
 using System.IO;
 using System.Windows;
@@ -9,12 +10,16 @@ namespace ClearCut.Main.Views
     public class ButtonsHandler
     {
         private ResultsList _userControl;
+
+        private ExternalProgramHelpers _externalProgramHelper;
+
         private SiteWatcher SiteWatcher;
 
         public ButtonsHandler(SiteWatcher siteWatcher, ResultsList resultsListUserControl)
         {
             this.SiteWatcher = siteWatcher;
             _userControl = resultsListUserControl;
+            _externalProgramHelper = new ExternalProgramHelpers();
         }
 
         public void SetButtonColor()
@@ -44,8 +49,7 @@ namespace ClearCut.Main.Views
                 {
                     try
                     {
-                    File.WriteAllText(targetFile.FullName, String.Empty);
-
+                        File.WriteAllText(targetFile.FullName, String.Empty);
                     }
                     catch (Exception ex)
                     {
@@ -57,14 +61,25 @@ namespace ClearCut.Main.Views
             }
         }
 
-        internal void HandleBareTailClick(Button sender)
+        internal void HandleNotepadPPAutoLoadClick(CheckBox sender, bool checkBoxState)
         {
             string tagValue = sender.Tag.ToString();
             if (!string.IsNullOrEmpty(tagValue))
             {
-                var bareTailArgs = "\"" + tagValue + "\"";
-                var bareTailProgram = @"C:\BareTail\baretail.exe";
-                System.Diagnostics.Process.Start(bareTailProgram, bareTailArgs);
+                //var bareTailArgs = "\"" + tagValue + "\"";
+                //var bareTailProgram = @"C:\BareTail\baretail.exe";
+                //System.Diagnostics.Process.Start(bareTailProgram, bareTailArgs);
+                //MessageBox.Show(tagValue + " " + checkBoxState.ToString());
+            }
+        }
+
+        internal void HandleBareTailClick(Button sender)
+        {
+            string tagValue = sender.Tag.ToString();
+
+            if (!string.IsNullOrEmpty(tagValue))
+            {
+                _externalProgramHelper.OpenInBareTail(tagValue);
             }
         }
 
@@ -73,9 +88,7 @@ namespace ClearCut.Main.Views
             string tagValue = sender.Tag.ToString();
             if (!string.IsNullOrEmpty(tagValue))
             {
-                var notepadPPArgs = "-n999999 \"" + tagValue + "\"";
-                var notepadPPProgram = @"C:\Program Files\Notepad++\notepad++.exe";
-                System.Diagnostics.Process.Start(notepadPPProgram, notepadPPArgs);
+                _externalProgramHelper.OpenInNotePadCPP(tagValue);
             }
         }
     }

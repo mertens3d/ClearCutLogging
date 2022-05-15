@@ -48,20 +48,20 @@
                 >
         <ListView.ItemTemplate>
           <DataTemplate>
-            <TextBlock Tag="{Binding Path=FileInfo.FullName}"  >
+            <TextBlock Tag="{Binding Path=MostRecentLogFile.FileInfo.FullName}"  >
             <StackPanel Orientation="Horizontal">
-              <TextBlock Text="{Binding Path=FriendlyName}" Width="120" />
+              <TextBlock Text="{Binding Path=MostRecentLogFile.FriendlyName}" Width="120" />
               <TextBlock Text=" " />
-              <TextBlock Text="{Binding Path=Age}" Width="50" TextAlignment="right" />
+              <TextBlock Text="{Binding Path=MostRecentLogFile.Age}" Width="50" TextAlignment="right" />
               <TextBlock Text=" " Width="10" />
               <!--<TextBlock Text="{Binding Path=FileInfo.LastWriteTime}" Width="130" TextAlignment="Right" />
               <TextBlock Width="20" />-->
-              <TextBlock Text="{Binding Path=FileInfo.Name}" Width="400"/>
-              <Button Click="OnClickClearLog" Content="Clear" Tag="{Binding Path=FileInfo.FullName}" Margin="0,0,8,0" Padding="2,0,4,0" Visibility="Hidden"/>
-              <Button Click="OnClickNotepadPP" Content="N++" Tag="{Binding Path=FileInfo.FullName}"/>
-              <CheckBox x:Name="cbAutoLoadChangedFileCPP"></CheckBox>
+              <TextBlock Text="{Binding Path=MostRecentLogFile.FileInfo.Name}" Width="400"/>
+              <Button Click="OnClickClearLog" Content="Clear" Tag="{Binding Path=MostRecentLogFile.FileInfo.FullName}" Margin="0,0,8,0" Padding="2,0,4,0" Visibility="Hidden"/>
+              <Button Click="OnClickNotepadPP" Content="N++" Tag="{Binding Path=MostRecentLogFile.FileInfo.FullName}"/>
+              <CheckBox x:Name="cbAutoLoadChangedFileCPP" IsChecked="{Binding Path=AutoLoadEnabled}" Tag="{Binding Path=TargetId}"></CheckBox>
               <TextBlock Width="4" />
-              <Button Click="OnClickBareTail" Content="BareTail" Tag="{Binding Path=FileInfo.FullName}"/>
+              <Button Click="OnClickBareTail" Content="BareTail" Tag="{Binding Path=TargetId}"/>
               <CheckBox x:Name="cbAutoLoadChangedFileBareTail"></CheckBox>
             </StackPanel>
             </TextBlock>

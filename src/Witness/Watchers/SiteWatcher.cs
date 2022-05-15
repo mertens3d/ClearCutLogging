@@ -17,13 +17,13 @@ namespace ClearCut.Support.Witness.Watchers
             WatcherBuild();
         }
 
-        public List<OneLogWatcher> WatchedLogs { get; set; } = new List<OneLogWatcher>();
+        public List<OneLogWatcher> AllLogWatchers { get; set; } = new List<OneLogWatcher>();
         public ISiteSettings SiteSettings { get; }
         private ILogger Logger { get; }
 
         public void TriggerDataChanged()
         {
-            foreach (var watcher in WatchedLogs)
+            foreach (var watcher in AllLogWatchers)
             {
                 watcher.TriggerDataChange();
             }
@@ -33,30 +33,43 @@ namespace ClearCut.Support.Witness.Watchers
 
         public bool IsEnabled { get; set; } = true;
 
-        protected void OnDataChanged(object sender, TargetWatcherEventArgs e)
+        protected void OnDataChangedEventListener(object sender, TargetWatcherEventArgs e)
         {
-            Guid witnessId = e.WitnessId;
-            OneLogWatcher logwatcher = WatchedLogs.Where(x => x.WatcherId.Equals(witnessId)).FirstOrDefault();
+            UpdateOneWatchedLog(e.WitnessId, e.LastFile);
+        }
 
-            if (logwatcher != null)
+        private void UpdateOneWatchedLog(Guid witnessIdOfChangedLog, IOneLogDataContext oneLogDataContext)
+        {
+            OneLogWatcher oneLogwatcher = AllLogWatchers.FirstOrDefault(x => x.WatcherId.Equals(witnessIdOfChangedLog));
+
+            if (oneLogwatcher != null)
             {
-                NotifyWatchersDataChanged(logwatcher, e);
+                if (oneLogDataContext?.MostRecentLogFile?.FileInfo != null)
+                {
+                    if (!oneLogwatcher.MostRecentFileName.Equals(oneLogDataContext.MostRecentLogFile.FileInfo.FullName))
+                    {
+                        oneLogwatcher.MostRecentFileNameChanged = true;
+                    }
+                    oneLogwatcher.MostRecentFileName = oneLogDataContext.MostRecentLogFile.FileInfo.FullName;
+                }
+                oneLogwatcher._fileChooser.LogDataForDataContext = oneLogDataContext;
+                NotifyWatchersDataChanged(oneLogwatcher);
             }
         }
 
-        private void NotifyWatchersDataChanged(OneLogWatcher logwatcher, TargetWatcherEventArgs e)
+        private void NotifyWatchersDataChanged(OneLogWatcher oneLogwatcher)
         {
             WitnessEventArgs witnessEventArgs = new WitnessEventArgs();
 
-            logwatcher._fileChooser.LastFile = e.LastFile;
-
-            var lastFiles = new List<ILastFile>();
-            WatchedLogs.ForEach(x => lastFiles.Add(x._fileChooser.LastFile));
+            var lastFiles = new List<IOneLogDataContext>();
+            AllLogWatchers.ForEach(x => lastFiles.Add(x._fileChooser.LogDataForDataContext));
 
             if (lastFiles != null && lastFiles.Any())
             {
-                witnessEventArgs.LastFiles = lastFiles.Where(x => x != null).OrderBy(x => x.TimeSpan).ToList();
+                witnessEventArgs.LastFiles = lastFiles.Where(x => x?.MostRecentLogFile != null).OrderBy(x => x.MostRecentLogFile.TimeSpan).ToList();
             }
+
+            
 
             EventHandler<WitnessEventArgs> handler = DataChanged;
             handler?.Invoke(this, witnessEventArgs);
@@ -64,26 +77,30 @@ namespace ClearCut.Support.Witness.Watchers
 
         private void WatcherBuild()
         {
-            BuildWatched();
+            BuildAllLogWatchers();
+            AttachEventToAllLogWatchers();
+        }
 
-            foreach (var watcher in WatchedLogs)
+        private void AttachEventToAllLogWatchers()
+        {
+            foreach (var watcher in AllLogWatchers)
             {
-                watcher.DataChanged += OnDataChanged;
+                watcher.OneLogDataChangedEventHandler += OnDataChangedEventListener;
             }
         }
 
         private void WatchTearDown()
         {
-            foreach (var watcher in WatchedLogs)
+            foreach (var watcher in AllLogWatchers)
             {
                 watcher.TearDown();
-                watcher.DataChanged -= OnDataChanged;
+                watcher.OneLogDataChangedEventHandler -= OnDataChangedEventListener;
             }
 
-            WatchedLogs.Clear();
+            AllLogWatchers.Clear();
         }
 
-        private void BuildWatched()
+        private void BuildAllLogWatchers()
         {
             if (SiteSettings.Targets != null && SiteSettings.Targets.Any())
             {
@@ -94,7 +111,7 @@ namespace ClearCut.Support.Witness.Watchers
                         target.FileFilter = "";
                     }
 
-                    WatchedLogs.Add(new OneLogWatcher(SiteSettings.RootFolder, target, Logger));
+                    AllLogWatchers.Add(new OneLogWatcher(SiteSettings.RootFolder, target, Logger));
                 }
             }
         }

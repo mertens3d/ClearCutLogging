@@ -6,6 +6,6 @@ namespace ClearCut.Support.Witness.Models
 {
   public class WitnessEventArgs : EventArgs
   {
-    public List<ILastFile> LastFiles { get; internal set; }
+    public List<IOneLogDataContext> LastFiles { get; internal set; }
   }
 }

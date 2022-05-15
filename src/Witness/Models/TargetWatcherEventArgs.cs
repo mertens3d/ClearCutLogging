@@ -5,7 +5,7 @@ namespace ClearCut.Support.Witness.Models
 {
   public class TargetWatcherEventArgs : EventArgs
   {
-    public ILastFile LastFile { get; internal set; }
+    public IOneLogDataContext LastFile { get; internal set; }
     public Guid WitnessId { get; internal set; }
   }
 }

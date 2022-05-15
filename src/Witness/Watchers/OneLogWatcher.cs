@@ -10,7 +10,7 @@ namespace ClearCut.Support.Witness
     {
         private FileSystemEventHandler _eventHandlerDataChanged;
         private FileSystemEventHandler _eventHandlerDataCreated;
-        public FileChooser _fileChooser { get; }
+        public OneLogFileFileChooser _fileChooser { get; }
         private FileSystemWatcher _fileSystemWatcher;
         private ITargetOptions target;
 
@@ -22,22 +22,24 @@ namespace ClearCut.Support.Witness
             WatcherId = Guid.NewGuid();
             InitFileSystemWatcher();
 
-            _fileChooser = new FileChooser(Logger, RootFolder, target, WatcherId);
+            _fileChooser = new OneLogFileFileChooser(Logger, RootFolder, target, WatcherId);
             _fileChooser.PopulateLastFile();
         }
 
-        public event EventHandler<TargetWatcherEventArgs> DataChanged;
+        public event EventHandler<TargetWatcherEventArgs> OneLogDataChangedEventHandler;
 
         public Guid WatcherId { get; internal set; }
         private ILogger Logger { get; }
         private string RootFolder { get; }
+        public string MostRecentFileName { get; set; } = string.Empty;
+        public bool MostRecentFileNameChanged { get; internal set; }
 
         internal void TriggerDataChange()
         {
             _fileChooser.PopulateLastFile();
             var targetEventWatcher = new TargetWatcherEventArgs()
             {
-                LastFile = _fileChooser.LastFile,
+                LastFile = _fileChooser.LogDataForDataContext,
                 WitnessId = WatcherId,
             };
 
@@ -95,8 +97,8 @@ namespace ClearCut.Support.Witness
 
         private void OnDataChanged(TargetWatcherEventArgs e)
         {
-            EventHandler<TargetWatcherEventArgs> handler = DataChanged;
-            handler?.Invoke(this, e);
+            EventHandler<TargetWatcherEventArgs> eventHandler = OneLogDataChangedEventHandler;
+            eventHandler?.Invoke(this, e);
         }
 
        
