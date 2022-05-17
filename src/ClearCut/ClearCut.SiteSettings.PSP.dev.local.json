@@ -14,17 +14,17 @@
     },
     {
       "ChildDirectory": "pspdev.local\\App_Data\\logs",
-      "FileFilter": "PayGate.WebTier.log.*.txt",
-      "FriendlyName": "PayGate Web Tier"
+      "FileFilter": "PayGate.Web.log.*.txt",
+      "FriendlyName": "PayGate Web"
     },
     {
       "ChildDirectory": "CommerceAuthoring_Sc9\\wwwroot\\logs",
-      "FileFilter": "PayGate.EngineTier.log.*.txt",
+      "FileFilter": "PayGate.Engine.log.*.txt",
       "FriendlyName": "PayGate Authoring"
     },
     {
       "ChildDirectory": "CommerceMinions_Sc9\\wwwroot\\logs",
-      "FileFilter": "PayGate.EngineTier.log.*.txt",
+      "FileFilter": "PayGate.Engine.log.*.txt",
       "FriendlyName": "PayGate Minions"
     },
     {
