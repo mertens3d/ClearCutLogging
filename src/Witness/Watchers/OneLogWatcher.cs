@@ -12,9 +12,9 @@ namespace ClearCut.Support.Witness
         private FileSystemEventHandler _eventHandlerDataCreated;
         public OneLogFileFileChooser _fileChooser { get; }
         private FileSystemWatcher _fileSystemWatcher;
-        private ITargetOptions target;
+        private ITargetedLogOptions target;
 
-        public OneLogWatcher(string rootFolder, ITargetOptions target, ILogger logger)
+        public OneLogWatcher(string rootFolder, ITargetedLogOptions target, ILogger logger)
         {
             this.target = target;
             this.Logger = logger;
@@ -56,7 +56,7 @@ namespace ClearCut.Support.Witness
             return new FileSystemWatcher
             {
                 Path = candidateDirectory.FullName,
-                Filter = target.FileFilter,
+                Filter = target.LogFileFilter,
                 EnableRaisingEvents = true,
                 IncludeSubdirectories = false,
                 NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size
@@ -65,7 +65,7 @@ namespace ClearCut.Support.Witness
 
         private void InitFileSystemWatcher()
         {
-            var candidateDirectory = new DirectoryInfo(Path.Combine(RootFolder, target.ChildDirectory));
+            var candidateDirectory = new DirectoryInfo(Path.Combine(RootFolder, target.LogChildDirectory));
 
             if (candidateDirectory.Exists)
             {

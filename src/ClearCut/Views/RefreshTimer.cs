@@ -11,9 +11,9 @@ namespace ClearCut.Main.Views
         private TimeSpan _time;
         private DispatcherTimer _timer;
         private Label countDown;
-        private SiteWatcher _siteWatcher;
+        private SiteFolderWatcher _siteWatcher;
 
-        public RefreshTimer(Label countDown, SiteWatcher siteWatcher)
+        public RefreshTimer(Label countDown, SiteFolderWatcher siteWatcher)
         {
             this.countDown = countDown;
             _siteWatcher = siteWatcher;

@@ -7,9 +7,9 @@ using System.Linq;
 
 namespace ClearCut.Support.Witness.Watchers
 {
-    public class SiteWatcher
+    public class SiteFolderWatcher : ISiteFolderWatcher
     {
-        public SiteWatcher(ISiteSettings siteSettings, ILogger logger)
+        public SiteFolderWatcher(ISiteFolderSettings siteSettings, ILogger logger)
         {
             Logger = logger;
             SiteSettings = siteSettings;
@@ -18,7 +18,7 @@ namespace ClearCut.Support.Witness.Watchers
         }
 
         public List<OneLogWatcher> AllLogWatchers { get; set; } = new List<OneLogWatcher>();
-        public ISiteSettings SiteSettings { get; }
+        public ISiteFolderSettings SiteSettings { get; }
         private ILogger Logger { get; }
 
         public void TriggerDataChanged()
@@ -69,8 +69,6 @@ namespace ClearCut.Support.Witness.Watchers
                 witnessEventArgs.LastFiles = lastFiles.Where(x => x?.MostRecentLogFile != null).OrderBy(x => x.MostRecentLogFile.TimeSpan).ToList();
             }
 
-            
-
             EventHandler<WitnessEventArgs> handler = DataChanged;
             handler?.Invoke(this, witnessEventArgs);
         }
@@ -102,13 +100,13 @@ namespace ClearCut.Support.Witness.Watchers
 
         private void BuildAllLogWatchers()
         {
-            if (SiteSettings.Targets != null && SiteSettings.Targets.Any())
+            if (SiteSettings.TargetedLogs != null && SiteSettings.TargetedLogs.Any())
             {
-                foreach (var target in SiteSettings.Targets)
+                foreach (var target in SiteSettings.TargetedLogs)
                 {
-                    if (string.IsNullOrEmpty(target.FileFilter))
+                    if (string.IsNullOrEmpty(target.LogFileFilter))
                     {
-                        target.FileFilter = "";
+                        target.LogFileFilter = "";
                     }
 
                     AllLogWatchers.Add(new OneLogWatcher(SiteSettings.RootFolder, target, Logger));

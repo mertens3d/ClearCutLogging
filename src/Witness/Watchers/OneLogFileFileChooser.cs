@@ -19,7 +19,7 @@ namespace ClearCut.Support.Witness
         public IOneLogDataContext LogDataForDataContext { get; set; }
         private string _previousLogFileName = string.Empty;
 
-        public OneLogFileFileChooser(ILogger logger, string rootFolder, ITargetOptions target, Guid watcherId)
+        public OneLogFileFileChooser(ILogger logger, string rootFolder, ITargetedLogOptions target, Guid watcherId)
         {
             this.Logger = logger;
             RootFolder = rootFolder;
@@ -52,10 +52,10 @@ namespace ClearCut.Support.Witness
         {
             IMostRecentMatchingLogFile toReturn = null;
 
-            var dirInfo = new DirectoryInfo(Path.Combine(RootFolder, LogDataForDataContext.Target.ChildDirectory));
+            var dirInfo = new DirectoryInfo(Path.Combine(RootFolder, LogDataForDataContext.Target.LogChildDirectory));
             if (dirInfo != null && dirInfo.Exists)
             {
-                var lastFileInfo = dirInfo.GetFiles(LogDataForDataContext.Target.FileFilter)
+                var lastFileInfo = dirInfo.GetFiles(LogDataForDataContext.Target.LogFileFilter)
                   .OrderByDescending(x => x.LastWriteTime)
                   .FirstOrDefault();
 
@@ -67,7 +67,7 @@ namespace ClearCut.Support.Witness
                     toReturn = new MostRecentMatchingLogFile()
                     {
                         FileInfo = lastFileInfo,
-                        FriendlyName = LogDataForDataContext.Target.FriendlyName,
+                        FriendlyName = LogDataForDataContext.Target.LogFriendlyName,
                         TimeSpan = timeSpan,
                         Age = _ageHelper.CalculateAge(timeSpan)
                     };

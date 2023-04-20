@@ -60,6 +60,7 @@
               <Button Click="OnClickClearLog" Content="Clear" Tag="{Binding Path=MostRecentLogFile.FileInfo.FullName}" Margin="0,0,8,0" Padding="2,0,4,0" Visibility="Hidden"/>
               <Button Click="OnClickNotepadPP" Content="N++" Tag="{Binding Path=MostRecentLogFile.FileInfo.FullName}"/>
               <CheckBox x:Name="cbAutoLoadChangedFileCPP" IsChecked="{Binding Path=AutoLoadEnabled}" Tag="{Binding Path=TargetId}"></CheckBox>
+              <Button Click="OnClickVSCode" Content="VS Code" Tag="{Binding Path=MostRecentLogFile.FileInfo.FullName}"/>
               <TextBlock Width="4" />
               <Button Click="OnClickBareTail" Content="BareTail" Tag="{Binding Path=TargetId}"/>
               <CheckBox x:Name="cbAutoLoadChangedFileBareTail"></CheckBox>

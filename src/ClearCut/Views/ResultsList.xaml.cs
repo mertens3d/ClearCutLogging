@@ -24,10 +24,10 @@ namespace ClearCut.Main.Views
         }
 
         public RefreshTimer RefreshTimer { get; private set; }
-        public SiteWatcher SiteWatcher { get; private set; }
+        public SiteFolderWatcher SiteWatcher { get; private set; }
         private ResultsViewModel ResultsViewModel { get; set; }
 
-        public void InitWithContext(SiteWatcher siteWatcher)
+        public void InitWithContext(SiteFolderWatcher siteWatcher)
         {
             SiteWatcher = siteWatcher;
             //DataContext = siteWatcher;
@@ -73,6 +73,10 @@ namespace ClearCut.Main.Views
         private void OnClickNotepadPP(object sender, RoutedEventArgs e)
         {
             _buttonsHandler.HandleNotepadPPClick((Button) sender);
+        }
+        private void OnClickVSCode(object sender, RoutedEventArgs e)
+        {
+            _buttonsHandler.HandleVSCodeClick((Button)sender);
         }
 
         private void OnToggledWatch(object sender, RoutedEventArgs e)

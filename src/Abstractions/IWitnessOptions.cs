@@ -2,8 +2,8 @@
 
 namespace ClearCut.Support.Abstractions
 {
-  public interface IWitnessOptions
+    public interface IWitnessOptions
   {
-    public List<ITargetOptions> Targets { get; set; }
+    public List<ITargetedLogOptions> Targets { get; set; }
   }
 }

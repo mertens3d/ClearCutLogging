@@ -4,6 +4,6 @@ namespace ClearCut.Support.Abstractions
 {
   public interface IEnvironementSettings
   {
-    List<ISiteSettings> SiteSettings { get; set; }
+    List<ISiteFolderSettings> SiteFolderSettings { get; set; }
   }
 }

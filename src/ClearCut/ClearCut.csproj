@@ -10,7 +10,15 @@
 
   <ItemGroup>
     <PackageReference Include="Castle.Windsor" Version="5.1.1" />
+    <Compile Remove="Helpers\**" />
+    <EmbeddedResource Remove="Helpers\**" />
+    <None Remove="Helpers\**" />
+    <Page Remove="Helpers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.12" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="5.0.1" />
     <PackageReference Include="Serilog" Version="2.10.0" />
@@ -23,13 +31,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="ClearCut.SiteSettings.PSP.dev.local.json">
+    <None Update="ClearCut.SiteSettings.OER_103.localhost.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Helpers\" />
+    <None Update="ClearCut.SiteSettings.Bdn.dev.local.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ClearCut.SiteSettings.OER_92.localhost.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

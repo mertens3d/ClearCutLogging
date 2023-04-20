@@ -5,6 +5,6 @@ namespace ClearCut.Support.Witness.Concretions
 {
   public class WitnessOptions : IWitnessOptions
   {
-    public List<ITargetOptions> Targets { get; set; } = new List<ITargetOptions>();
+    public List<ITargetedLogOptions> Targets { get; set; } = new List<ITargetedLogOptions>();
   }
 }

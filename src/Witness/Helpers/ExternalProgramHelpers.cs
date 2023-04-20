@@ -13,7 +13,18 @@
         {
             var notepadPPArgs = "-n999999 \"" + tagValue + "\"";
             var notepadPPProgram = @"C:\Program Files\Notepad++\notepad++.exe";
+            //var notepadPPProgram = @"C:\Program Files (x86)\Notepad++\notepad++.exe";
+
+
             System.Diagnostics.Process.Start(notepadPPProgram, notepadPPArgs);
+        }
+        public void OpenInVSCode(string tagValue)
+        {
+            //"C:\Users\xxxx\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+            var vsCodeArgs = "\"" + tagValue + "\"";
+            var vsCodeProgram = @"Code.exe";
+
+            System.Diagnostics.Process.Start(vsCodeProgram, vsCodeArgs);
         }
     }
 }

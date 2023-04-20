@@ -13,9 +13,9 @@ namespace ClearCut.Main.Views
 
         private ExternalProgramHelpers _externalProgramHelper;
 
-        private SiteWatcher SiteWatcher;
+        private SiteFolderWatcher SiteWatcher;
 
-        public ButtonsHandler(SiteWatcher siteWatcher, ResultsList resultsListUserControl)
+        public ButtonsHandler(SiteFolderWatcher siteWatcher, ResultsList resultsListUserControl)
         {
             this.SiteWatcher = siteWatcher;
             _userControl = resultsListUserControl;
@@ -80,6 +80,15 @@ namespace ClearCut.Main.Views
             if (!string.IsNullOrEmpty(tagValue))
             {
                 _externalProgramHelper.OpenInBareTail(tagValue);
+            }
+        }
+
+        internal void HandleVSCodeClick(Button sender)
+        {
+            string tagValue = sender.Tag.ToString();
+            if (!string.IsNullOrEmpty(tagValue))
+            {
+                _externalProgramHelper.OpenInVSCode(tagValue);
             }
         }
 

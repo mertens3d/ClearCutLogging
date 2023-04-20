@@ -8,6 +8,6 @@ namespace ClearCut.Support.Witness.Concretions
         public bool AutoLoadEnabled { get; set; } = false;
         public IMostRecentMatchingLogFile MostRecentLogFile { get; set; }
         public Guid TargetId { get; set; }
-        public ITargetOptions Target { get; set; }
+        public ITargetedLogOptions Target { get; set; }
     }
 }

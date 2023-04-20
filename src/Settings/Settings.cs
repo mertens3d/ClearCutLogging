@@ -5,6 +5,6 @@ namespace ClearCut.Support.Settings
 {
   public class EnvironementSettings : IEnvironementSettings
   {
-    public List<ISiteSettings> SiteSettings { get; set; } = new List<ISiteSettings>();
+    public List<ISiteFolderSettings> SiteFolderSettings { get; set; } = new List<ISiteFolderSettings>();
   }
 }
