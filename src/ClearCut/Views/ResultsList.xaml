@@ -49,7 +49,7 @@
         <ListView.ItemTemplate>
           <DataTemplate>
             <TextBlock Tag="{Binding Path=MostRecentLogFile.FileInfo.FullName}"  >
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" x:Name="DataTemplateStackPanel">
               <TextBlock Text="{Binding Path=MostRecentLogFile.FriendlyName}" Width="120" />
               <TextBlock Text=" " />
               <TextBlock Text="{Binding Path=MostRecentLogFile.Age}" Width="50" TextAlignment="right" />

@@ -26,15 +26,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Foundation\Foundation.csproj" />
     <ProjectReference Include="..\Settings\Settings.csproj" />
     <ProjectReference Include="..\Witness\Witness.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ClearCut.SiteSettings.OER_103.Support.CM.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ClearCut.SiteSettings.OER_103.Support.CD.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="ClearCut.SiteSettings.OER_103.localhost.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="ClearCut.SiteSettings.Bdn.dev.local.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ClearCut.AppSettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="ClearCut.SiteSettings.OER_92.localhost.json">

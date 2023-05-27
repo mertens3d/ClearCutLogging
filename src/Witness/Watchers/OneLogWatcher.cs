@@ -1,5 +1,6 @@
 ﻿using ClearCut.Support.Abstractions;
 using ClearCut.Support.Witness.Models;
+using Foundation;
 using Serilog;
 using System;
 using System.IO;
@@ -78,7 +79,7 @@ namespace ClearCut.Support.Witness
             }
             else
             {
-                Logger.Error("Candidate path did not exist: " + candidateDirectory.FullName);
+                Logger.ErrorOnce("Candidate path did not exist: " + candidateDirectory.FullName);
             }
         }
 

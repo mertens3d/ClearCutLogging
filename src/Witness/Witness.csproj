@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Abstractions\Abstractions.csproj" />
+    <ProjectReference Include="..\Foundation\Foundation.csproj" />
   </ItemGroup>
 
 </Project>

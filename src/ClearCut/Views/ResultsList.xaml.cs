@@ -45,6 +45,8 @@ namespace ClearCut.Main.Views
                 SiteWatcher.DataChanged += UpdateDataContext;
                 SiteWatcher.TriggerDataChanged();
             }
+
+            //var test = this.FindName("DataTemplateStackPanel");
         }
 
         //private void OnCbAutoLoadCPPChecked(object sender, RoutedEventArgs e)

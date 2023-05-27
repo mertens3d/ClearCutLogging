@@ -10,6 +10,7 @@ using System.Windows.Controls;
 
 namespace ClearCut
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -18,8 +19,10 @@ namespace ClearCut
     {
         private readonly ILogger _logger;
         private readonly TabItem _tabAdd;
-        private readonly List<TabItem> _tabItems;
+
         private readonly IWitnessManager _witnessManager;
+        private readonly ISettingsManager _settingsManager;
+        private readonly XamlTabManager _xamlTabManager;
 
         public MainWindow(ILogger logger, ISettingsManager settingsManager, IWitnessManager witnessManager)
         {
@@ -29,50 +32,50 @@ namespace ClearCut
                 InitializeComponent();
 
                 _witnessManager = witnessManager;
+                _settingsManager = settingsManager;
 
-                _tabItems = new List<TabItem>();
+               
+                _xamlTabManager = new XamlTabManager(tabDynamic, _logger);
+
                 InitWatch();
-
-                // bind tab control
-                tabDynamic.DataContext = _tabItems;
-
-                tabDynamic.SelectedIndex = 0;
+                RestoreWindowSize();
+                this.SizeChanged += MyWindow_SizeChanged;
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                _logger.Error(ex.ToString());
             }
         }
 
-        private TabItem AddTabItem(SiteFolderWatcher siteWatcher)
+        private void RestoreWindowSize()
         {
-            int count = _tabItems.Count;
-            var tab = new TabItem();
-            tab.Header = siteWatcher.SiteSettings.FriendlyName;
-
-            //tab.HeaderTemplate = tabDynamic.FindResource("TabHeader") as DataTemplate;
-
-            var resultsList = new ResultsList();
-
-            resultsList.InitWithContext(siteWatcher);
-
-            tab.Content = resultsList;
-            _tabItems.Add(tab);
-
-            return tab;
+            if(_settingsManager?.ApplicationSettings != null)
+            {
+                this.Width = _settingsManager.ApplicationSettings.WindowWidth;
+                this.Height = _settingsManager.ApplicationSettings.WindowHeight; 
+            }
         }
+
+        private void MyWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            _settingsManager.ApplicationSettings.WindowWidth = this.Width;
+            _settingsManager.ApplicationSettings.WindowHeight = this.Height;
+            _settingsManager.SaveApplicationSettings();
+
+        }
+
 
         private void InitWatch()
         {
-            var tabs = new ObservableCollection<ClearCut.Main.Views.ResultsList>();
+            var tabs = new ObservableCollection<ResultsList>();
             if (_witnessManager != null)
             {
                 //List<ISiteSettings> siteSettings = SettingsManager.GetEnvironmentSettings().SiteSettings;
+                _logger.Information($"{nameof(_witnessManager.SiteFolderWatchers)} count: {_witnessManager.SiteFolderWatchers.Count}");
 
-                foreach (SiteFolderWatcher siteWatcher in _witnessManager.SiteFolderWatchers)
-                {
-                    this.AddTabItem(siteWatcher);
-                }
+                _xamlTabManager.AddTabsForWatchedFolders(_witnessManager.SiteFolderWatchers);
+
+                
             }
         }
     }

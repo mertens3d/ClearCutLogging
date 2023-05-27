@@ -1,0 +1,14 @@
+{
+    "LogViewers": [
+        {
+            "FriendlyName": "Notepad++",
+            "ExeLocationCandidates": [
+                "C:/Program Files/Notepad++/notepad++.exe"
+            ],
+            "ButtonText": "N++",
+            "Args": "-n999999 {$fullLogFileName}"
+        }
+    ],
+    "WindowHeight": 100,
+    "WindowWidth" :  100
+}

@@ -6,6 +6,7 @@ using ClearCut.Main;
 using ClearCut.Support.Abstractions;
 using ClearCut.Support.Settings.Services;
 using ClearCut.Support.Witness.Services;
+using Foundation;
 
 namespace ClearCut
 {
@@ -17,14 +18,15 @@ namespace ClearCut
     public App()
     {
       var services = new ServiceCollection();
-      ILogger log = new LoggerConfiguration()
-        .Enrich.FromLogContext()
-        .WriteTo.File(
-            path: Constants.Logging.Path,
-            restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information,
-            rollingInterval: RollingInterval.Day,
-            rollOnFileSizeLimit: true)
-        .CreateLogger();
+            ILogger log = new LoggerConfiguration()
+              .Enrich.FromLogContext()
+              .WriteTo.File(
+                  path: Constants.Logging.Path,
+                  restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information,
+                  rollingInterval: RollingInterval.Day,
+                  rollOnFileSizeLimit: true)
+              .CreateLogger();
+              //.ForContext<SerilogExtensions>();
 
       var ioc = new WindsorContainer();
 

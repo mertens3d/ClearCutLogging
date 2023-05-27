@@ -1,7 +1,13 @@
 ﻿namespace ClearCut.Main.Helpers
 {
-    public class ExternalProgramHelpers
+    public class ExternalProgramLauncher
     {
+        public void OpenInGeneric(string tagValue) {
+
+            var args = "\"" + tagValue + "\"";
+            var executable = @"C:\BareTail\baretail.exe";
+            System.Diagnostics.Process.Start(executable, args);
+        }
         public void OpenInBareTail(string tagValue)
         {
             var bareTailArgs = "\"" + tagValue + "\"";

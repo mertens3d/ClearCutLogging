@@ -11,7 +11,7 @@ namespace ClearCut.Main.Views
     {
         private ResultsList _userControl;
 
-        private ExternalProgramHelpers _externalProgramHelper;
+        private ExternalProgramLauncher _externalProgramHelper;
 
         private SiteFolderWatcher SiteWatcher;
 
@@ -19,7 +19,7 @@ namespace ClearCut.Main.Views
         {
             this.SiteWatcher = siteWatcher;
             _userControl = resultsListUserControl;
-            _externalProgramHelper = new ExternalProgramHelpers();
+            _externalProgramHelper = new ExternalProgramLauncher();
         }
 
         public void SetButtonColor()

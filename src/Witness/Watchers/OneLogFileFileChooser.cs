@@ -1,6 +1,7 @@
 ﻿using ClearCut.Main.Helpers;
 using ClearCut.Support.Abstractions;
 using ClearCut.Support.Witness.Concretions;
+using Foundation;
 using Serilog;
 using System;
 using System.IO;
@@ -12,7 +13,7 @@ namespace ClearCut.Support.Witness
     {
         private ILogger Logger;
         private AgeHelper _ageHelper;
-        private ExternalProgramHelpers _externalProgramHelper;
+        private ExternalProgramLauncher _externalProgramHelper;
 
         public string RootFolder { get; }
 
@@ -29,7 +30,7 @@ namespace ClearCut.Support.Witness
                 Target = target
             };
             _ageHelper = new AgeHelper(Logger);
-            _externalProgramHelper = new ExternalProgramHelpers();
+            _externalProgramHelper = new ExternalProgramLauncher();
         }
 
         public void PopulateLastFile()
@@ -81,7 +82,7 @@ namespace ClearCut.Support.Witness
                 }
                 else if (!dirInfo.Exists)
                 {
-                    Logger.Error("Directory does not exist: " + dirInfo.FullName);
+                    Logger.ErrorOnce("Directory does not exist: " + dirInfo.FullName);
                 }
             }
 

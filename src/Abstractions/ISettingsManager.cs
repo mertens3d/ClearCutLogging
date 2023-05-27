@@ -1,7 +1,12 @@
-﻿namespace ClearCut.Support.Abstractions
+﻿using System.Collections.Generic;
+
+namespace ClearCut.Support.Abstractions
 {
     public interface ISettingsManager
     {
-        IEnvironementSettings GetEnvironmentSettings();
+        IEnvironementSettings EnvironmentSettings { get; }
+        IApplicationSettings ApplicationSettings { get; }
+
+        void SaveApplicationSettings();
     }
 }
