@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <AssemblyName>ClearCut.Main</AssemblyName>
     <RootNamespace>ClearCut.Main</RootNamespace>
+    <ApplicationIcon>3380862.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,10 @@
     <EmbeddedResource Remove="Helpers\**" />
     <None Remove="Helpers\**" />
     <Page Remove="Helpers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="3380862.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +37,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ClearCut.SiteSettings.tes.local.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ClearCut.SiteSettings.devicematrix-local.cm.json.disabled">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ClearCut.SiteSettings.RRH.sc.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ClearCut.SiteSettings.cm.velir.json.disabled">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ClearCut.SiteSettings.cm.belden.localhost.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="ClearCut.SiteSettings.OER_103.Support.CM.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

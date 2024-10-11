@@ -1,81 +1,36 @@
 {
-  "FriendlyName": "cm.belden.localhost",
-  "RootFolder": "C:\B102\docker\data\cm",
-  "Targets": [
-    {
-      "ChildDirectory": "\\logs",
-      "FileFilter": "log.*.txt",
-      "FriendlyName": "Sitecore Log"
-    },
-    {
-      "ChildDirectory": "\\logs",
-      "FileFilter": "xconnect-log-*.txt",
-      "FriendlyName": "xConnect Log"
-    },
-    {
-      "ChildDirectory": "\\logs",
-      "FileFilter": "PayGate.Web.log.*.txt",
-      "FriendlyName": "PayGate Web"
-    },
-    {
-      "ChildDirectory": "CommerceAuthoring_Sc9\\wwwroot\\logs",
-      "FileFilter": "PayGate.Engine.log.*.txt",
-      "FriendlyName": "PayGate Authoring"
-    },
-    {
-      "ChildDirectory": "CommerceMinions_Sc9\\wwwroot\\logs",
-      "FileFilter": "PayGate.Engine.log.*.txt",
-      "FriendlyName": "PayGate Minions"
-    },
-    {
-      "ChildDirectory": "\\logs",
-      "FileFilter": "Exm.log*.txt",
-      "FriendlyName": "EXM Log"
-    },
-    {
-      "ChildDirectory": "bdn.local.xconnect.local\\App_Data\\jobs\\continuous\\AutomationEngine\\App_Data\\logs",
-      "FileFilter": "xconnect-log-*.txt",
-      "FriendlyName": "Automation Engine"
-    },
-    {
-      "ChildDirectory": "bdn.local.xconnect.local\\App_Data\\jobs\\continuous\\IndexWorker\\App_Data\\logs",
-      "FileFilter": "xconnect-log-*.txt",
-      "FriendlyName": "Index Worker"
-    },
-
-    {
-      "ChildDirectory": "bdn.local.xconnect.local\\App_Data\\jobs\\continuous\\ProcessingEngine\\App_Data\\logs",
-      "FileFilter": "xconnect-log-*.txt",
-      "FriendlyName": "Processing Engine"
-    },
-    {
-      "ChildDirectory": "CommerceAuthoring_Sc9\\wwwroot\\logs",
-      "FileFilter": "SCF*.log.*.txt",
-      "FriendlyName": "Commerce Authoring"
-    },
-    {
-      "ChildDirectory": "CommerceMinions_Sc9\\wwwroot\\logs",
-      "FileFilter": "SCF*.log.*.txt",
-      "FriendlyName": "Commerce Minions"
-    },
-    {
-      "ChildDirectory": "CommerceOps_Sc9\\wwwroot\\logs",
-      "FileFilter": "SCF*.log.*.txt",
-      "FriendlyName": "Commerce Ops"
-    },
-    {
-      "ChildDirectory": "CommerceShops_Sc9\\wwwroot\\logs",
-      "FileFilter": "SCF*.log.*.txt",
-      "FriendlyName": "Commerce Shops"
-    },
-    {
-      "ChildDirectory": "bdn.local.xconnect.local\\App_Data\\Logs",
-      "FileFilter": "xconnect-log-DESKTOP-Q58MIM3-bdn.local.xconnect.local-*",
-      "FriendlyName": "XConnect Root"
-    }
-
-
-
-  ]
-
+    "FriendlyName": "cm.belden.localhost",
+    "RootFolder": "C:/Belden/docker/data/",
+    "Targets": [
+        {
+            "ChildDirectory": "cm/logs",
+            "FileFilter": "log.*.txt",
+            "FriendlyName": "Sitecore Log"
+        },
+        {
+            "ChildDirectory": "cm/logs",
+            "FileFilter": "Dianoga.log.*.*.txt",
+            "FriendlyName": "Diango"
+        },
+        {
+            "ChildDirectory": "cm/logs",
+            "FileFilter": "Crawling.log.*.*.txt",
+            "FriendlyName": "Crawling"
+        },
+        {
+            "ChildDirectory": "cm/logs",
+            "FileFilter": "Publishing.log.*.*.txt",
+            "FriendlyName": "Publishing"
+        },
+        {
+            "ChildDirectory": "cm/logs/AlphaWire",
+            "FileFilter": "Alphawire.Forms.log.*.*.txt",
+            "FriendlyName": "AlphaWire Forms"
+        },
+        {
+            "ChildDirectory": "cm/logs",
+            "FileFilter": "Search.log.*.*.txt",
+            "FriendlyName": "Search Log"
+        }
+    ]
 }

@@ -1,0 +1,31 @@
+{
+  "FriendlyName": "Steris Local",
+  "RootFolder": "C:\\inetpub\\wwwroot\\",
+  "Targets": [
+    {
+      "ChildDirectory": "devicematrix-local.cm\\app_data\\logs",
+      "FileFilter": "log.*.txt",
+      "FriendlyName": "Sitecore Log"
+    },
+    {
+      "ChildDirectory": "devicematrix-local.cm\\app_data\\logs",
+      "FileFilter": "Crawling.log.*.*.txt",
+      "FriendlyName": "Crawling"
+    },
+    {
+      "ChildDirectory": "devicematrix-local.cm\\app_data\\logs",
+      "FileFilter": "Publishing.log.*.*.txt",
+      "FriendlyName": "Publishing"
+    },
+    {
+      "ChildDirectory": "devicematrix-local.cm\\devicematrix-local.identityserver",
+      "FileFilter": "sts-*.log",
+      "FriendlyName": "Id"
+    },
+    {
+      "ChildDirectory": "devicematrix-local.cm\\app_data\\logs",
+      "FileFilter": "Search.log.*.*.txt",
+      "FriendlyName": "Search Log"
+    }
+  ]
+}

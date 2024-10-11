@@ -1,0 +1,36 @@
+{
+    "FriendlyName": "10.3 OER.localhost",
+    "RootFolder": "C:/inetpub/wwwroot/",
+    "Targets": [
+        {
+            "ChildDirectory": "SC103_GV.Educationcm.dev.local/app_data/logs",
+            "FileFilter": "log.*.txt",
+            "FriendlyName": "Sitecore Log"
+        },
+        {
+            "ChildDirectory": "SC103_GV.Educationcm.dev.local/app_data/logs",
+            "FileFilter": "Search.log.*.txt",
+            "FriendlyName": "Search Log"
+        },
+        {
+            "ChildDirectory": "SC103_GV.Educationcm.dev.local/app_data/logs",
+            "FileFilter": "GV.Integrations.log.*.txt",
+            "FriendlyName": "GV.Integrations.log"
+        },
+        {
+            "ChildDirectory": "OER103_OER_ClassroomManagement/logs",
+            "FileFilter": "log.*.txt",
+            "FriendlyName": "Class Room Management"
+        },
+        {
+            "ChildDirectory": "OER103_OER_AssignmentManagement/logs",
+            "FileFilter": "log.*.txt",
+            "FriendlyName": "Assignment Management"
+        },
+		{
+            "ChildDirectory": "SC103_GV.Educationidentityserver.dev.local/logs",
+            "FileFilter": "sts-*.log",
+            "FriendlyName": "Identity Server"
+        }
+    ]
+}

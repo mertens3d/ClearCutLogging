@@ -1,0 +1,13 @@
+{
+    "FriendlyName": "SC92 OER.localhost",
+    "RootFolder": "C:/inetpub/wwwroot/",
+    "Targets": [
+        {
+            "ChildDirectory": "SC92_GV.Education.cm/App_Data/logs",
+            "FileFilter": "log.*.txt",
+            "FriendlyName": "Sitecore Log"
+        }
+        
+        
+    ]
+}

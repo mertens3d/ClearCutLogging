@@ -1,0 +1,31 @@
+{
+  "FriendlyName": "TES",
+  "RootFolder": "C:/Projects/Endocrine-Society/tools/docker/data/",
+  "Targets": [
+    {
+      "ChildDirectory": "cm/logs",
+      "FileFilter": "log.*.txt",
+      "FriendlyName": "Sitecore Log"
+    },
+    {
+      "ChildDirectory": "cm/logs",
+      "FileFilter": "Crawling.log.*.txt",
+      "FriendlyName": "Crawling"
+    },
+    {
+      "ChildDirectory": "cm/logs",
+      "FileFilter": "Publishing.log.*.txt",
+      "FriendlyName": "Publishing"
+    },
+    //{
+    //  "ChildDirectory": "devicematrix-local.cm\\devicematrix-local.identityserver",
+    //  "FileFilter": "sts-*.log",
+    //  "FriendlyName": "Id"
+    //},
+    {
+      "ChildDirectory": "cm/logs",
+      "FileFilter": "Search.log.*.txt",
+      "FriendlyName": "Search Log"
+    }
+  ]
+}

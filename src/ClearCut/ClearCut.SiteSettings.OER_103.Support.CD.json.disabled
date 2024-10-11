@@ -1,0 +1,31 @@
+{
+    "FriendlyName": "10.3 OER.Support.CD",
+    "RootFolder": "\\\\VWGVOWH\\wwwroot\\",
+    "Targets": [
+        {
+            "ChildDirectory": "OER103.cd.gv.velir.com/app_data/logs",
+            "FileFilter": "log.*.txt",
+            "FriendlyName": "Sitecore Log"
+        },
+        {
+            "ChildDirectory": "OER103.cd.gv.velir.com/app_data/logs",
+            "FileFilter": "Search.log.*.txt",
+            "FriendlyName": "Search Log"
+        },
+        {
+            "ChildDirectory": "OER103.cm.gv.velir.com/app_data/logs",
+            "FileFilter": "GV.Integrations.log.*.txt",
+            "FriendlyName": "GV.Integrations.log"
+        },
+        {
+            "ChildDirectory": "OER103_ClassroomManagement/logs",
+            "FileFilter": "log.*.txt",
+            "FriendlyName": "Class Room Management"
+        },
+        {
+            "ChildDirectory": "OER103_AssignmentManagement/logs",
+            "FileFilter": "log.*.txt",
+            "FriendlyName": "Assignment Management"
+        }
+    ]
+}

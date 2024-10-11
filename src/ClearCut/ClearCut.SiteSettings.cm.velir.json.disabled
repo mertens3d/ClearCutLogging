@@ -1,0 +1,52 @@
+{
+  "FriendlyName": "cm.velir",
+  "RootFolder": "C:\\Projects\\Velir\\VelirSite-Sitecore\\tools\\docker\\data",
+  "Targets": [
+    {
+      "ChildDirectory": "cm\\app_data\\logs",
+      "FileFilter": "log.*.txt",
+      "FriendlyName": "Sitecore Log"
+    },
+    {
+      "ChildDirectory": "cm\\app_data\\logs",
+      "FileFilter": "Crawling.log.*.*.txt",
+      "FriendlyName": "Crawling"
+    },
+    {
+      "ChildDirectory": "cm\\app_data\\logs",
+      "FileFilter": "Publishing.log.*.*.txt",
+      "FriendlyName": "Publishing"
+    },
+    {
+      "ChildDirectory": "id",
+      "FileFilter": "sts-*.log",
+      "FriendlyName": "Id"
+    },
+    {
+      "ChildDirectory": "cm\\app_data\\logs",
+      "FileFilter": "Search.log.*.*.txt",
+      "FriendlyName": "Search Log"
+    },
+    {
+      "ChildDirectory": "xconnect\\App_Data\\logs",
+      "FileFilter": "xconnect-log-*.txt",
+      "FriendlyName": "xconnect"
+    },
+    {
+      "ChildDirectory": "xconnect\\App_Data\\jobs\\continuous\\AutomationEngine\\App_Data\\logs",
+      "FileFilter": "xconnect-log-*.txt",
+      "FriendlyName": "Automation Engine"
+    },
+    {
+      "ChildDirectory": "xconnect\\App_Data\\jobs\\continuous\\IndexWorker\\App_Data\\logs",
+      "FileFilter": "xconnect-log-*.txt",
+      "FriendlyName": "Index Worker"
+    },
+
+    {
+      "ChildDirectory": "xconnect\\App_Data\\jobs\\continuous\\ProcessingEngine\\App_Data\\logs",
+      "FileFilter": "xconnect-log-*.txt",
+      "FriendlyName": "Processing Engine"
+    }
+  ]
+}

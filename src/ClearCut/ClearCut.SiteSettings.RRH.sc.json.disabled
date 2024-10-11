@@ -1,0 +1,32 @@
+{
+  "FriendlyName": "RRH",
+  "RootFolder": "C:\\inetpub\\wwwroot\\",
+  "Targets": [
+    {
+      "ChildDirectory": "RRH.sc\\app_data\\logs",
+      "FileFilter": "log.*.txt",
+      "FriendlyName": "Sitecore Log"
+    },
+    {
+      "ChildDirectory": "RRH.sc\\app_data\\logs",
+      "FileFilter": "Crawling.log.*.*.txt",
+      "FriendlyName": "Crawling"
+    },
+    {
+      "ChildDirectory": "RRH.sc\\app_data\\logs",
+      "FileFilter": "Publishing.log.*.*.txt",
+      "FriendlyName": "Publishing"
+    },
+    {
+      "ChildDirectory": "RRH.sc\\app_data\\logs",
+      "FileFilter": "Search.log.*.*.txt",
+      "FriendlyName": "Search"
+    },
+    {
+      "ChildDirectory": "RRH.identityserver\\logs",
+      "FileFilter": "sts-*.log",
+      "FriendlyName": "Identityserver"
+    }
+    
+  ]
+}
